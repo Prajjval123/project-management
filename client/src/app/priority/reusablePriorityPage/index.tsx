@@ -8,7 +8,6 @@ import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 import {
   Priority,
   Task,
-  useGetAuthUserQuery,
   useGetTasksByUserQuery,
 } from "@/state/api";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
@@ -16,7 +15,7 @@ import React, { useState } from "react";
 
 type Props = {
   priority: Priority;
-};
+}
 
 const columns: GridColDef[] = [
   {
@@ -73,12 +72,11 @@ const columns: GridColDef[] = [
   },
 ];
 
-const ReusablePriorityPage = ({ priority }: Props) => {
+const index = ({ priority }: Props) => {
   const [view, setView] = useState("list");
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
 
-  const { data: currentUser } = useGetAuthUserQuery({});
-  const userId = currentUser?.userDetails?.userId ?? null;
+  const userId = 1;
   const {
     data: tasks,
     isLoading,
@@ -86,7 +84,6 @@ const ReusablePriorityPage = ({ priority }: Props) => {
   } = useGetTasksByUserQuery(userId || 0, {
     skip: userId === null,
   });
-
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
   const filteredTasks = tasks?.filter(
@@ -155,6 +152,6 @@ const ReusablePriorityPage = ({ priority }: Props) => {
       )}
     </div>
   );
-};
+}
 
-export default ReusablePriorityPage;
+export default index
