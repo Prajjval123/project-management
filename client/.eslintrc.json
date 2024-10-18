@@ -1,7 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off",
-    "no-unused-vars": "off"
+    "no-explicit-any": "off", // Disable the rule for explicit 'any' type
+    "no-unused-vars": ["warn", { " vars": "all", "args": "after-used", "ignoreRestSiblings": true }] // Set the unused vars rule to warning
   }
 }
